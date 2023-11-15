@@ -11,6 +11,12 @@ public enum ChristmasMessage {
     OVER_QUANTITY_LIMIT_ERROR("메뉴는 한 번에 최대 20개까지만 주문할 수 있습니다. 다시 입력해 주세요.\n"),
     EVENT_BENEFIT_PREVIEW("일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!\n"),
     ORDER_MENU_AND_QUANTITY("\n<주문 메뉴>\n"),
+    ORDER_AMOUNT_BEFORE_DISCOUNT("\n<할인 전 총주문 금액>\n"),
+    GIFT_MENU("\n<증정 메뉴>\n"),
+    BENEFIT_DETAIL("\n<혜택 내역>\n"),
+    TOTAL_BENEFIT_AMOUNT("\n<총혜택 금액>\n"),
+    PAYMENT_AMOUNT_AFTER_DISCOUNT("\n<할인 후 예상 결제 금액>\n"),
+    DECEMBER_EVENT_BADGE("\n<12월 이벤트 배지>\n");
 
     private final String text;
 
