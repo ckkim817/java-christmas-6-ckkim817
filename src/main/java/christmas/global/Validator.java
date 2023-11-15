@@ -95,7 +95,6 @@ public class Validator {
             nameAndQuantityListClear();
             throw new IllegalArgumentException(ORDER_ONLY_BEVERAGE_ERROR.getText());
         }
-
         if (isOverLimit()) {
             nameAndQuantityListClear();
             throw new IllegalArgumentException(OVER_QUANTITY_LIMIT_ERROR.getText());

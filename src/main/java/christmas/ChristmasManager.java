@@ -3,9 +3,11 @@ package christmas;
 import static christmas.global.common.ChristmasMessage.EVENT_BENEFIT_PREVIEW;
 
 import christmas.domain.DayOfWeekCalculator;
+import christmas.domain.EventBenefit;
 import christmas.global.Validator;
 import christmas.ui.InputView;
 import christmas.ui.OutputView;
+import java.util.Map;
 
 public class ChristmasManager {
 
@@ -20,15 +22,6 @@ public class ChristmasManager {
 
     public void run() {
         inputVisitDate();
-        if (dayOfWeekCalculator.isChristmasDDay()) {
-            System.out.println("크리스마스 디데이 할인");
-        }
-        if (dayOfWeekCalculator.isWeekend()) {
-            System.out.println("주말 할인");
-        }
-        if (dayOfWeekCalculator.isSpecialDay()) {
-            System.out.println("특별 할인");
-        }
         inputOrderMenu();
         printEventBenefitPreview();
         printOrder();
@@ -59,8 +52,25 @@ public class ChristmasManager {
     }
 
     private void printOrder() {
-        outputView.printOrderMenuAndQuantity(Validator.menuMapping());
-        outputView.printOrderAmountBeforeDiscount(Validator.menuMapping());
-        outputView.printGiftMenu(Validator.menuMapping());
+        Map<String, String> menuMap = Validator.menuMapping();
+
+        outputView.printOrderMenuAndQuantity(menuMap);
+        outputView.printOrderAmountBeforeDiscount(menuMap);
+        outputView.printGiftMenu(menuMap);
+        EventBenefit eventBenefit = new EventBenefit();
+        outputView.printTotalEventBenefit(menuMap, calculateTotalBenefit(eventBenefit, menuMap));
+    }
+
+    private int calculateTotalBenefit(EventBenefit eventBenefit, Map<String, String> menuMap) {
+        int totalBenefit = dayOfWeekCalculator.ChristmasDDayDiscountAmount();
+
+        if (dayOfWeekCalculator.isSpecialDay()) {
+            totalBenefit += 1000;
+        }
+        if (dayOfWeekCalculator.isWeekend()) {
+            return totalBenefit += eventBenefit.weekendDiscountAmount(menuMap);
+        }
+
+        return totalBenefit += eventBenefit.weekdayDiscountAmount(menuMap);
     }
 }
