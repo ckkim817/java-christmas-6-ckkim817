@@ -25,6 +25,7 @@ public class ChristmasManager {
         if (dayOfWeekCalculator.isSpecialDay()) {
             System.out.println("특별 할인");
         }
+        inputOrderMenu();
     }
 
     private void inputVisitDate() {
@@ -34,6 +35,15 @@ public class ChristmasManager {
         } catch (IllegalArgumentException e) {
             System.out.print("[ERROR] " + e.getMessage());
             inputVisitDate();
+        }
+    }
+
+    private void inputOrderMenu() {
+        try {
+            inputView.readOrderMenu();
+        } catch (IllegalArgumentException e) {
+            System.out.print("[ERROR] " + e.getMessage());
+            inputOrderMenu();
         }
     }
 }
