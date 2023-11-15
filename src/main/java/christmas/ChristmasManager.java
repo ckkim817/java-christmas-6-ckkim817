@@ -1,5 +1,9 @@
 package christmas;
 
+import static christmas.global.common.ChristmasConstant.EVENT_BENEFIT_LIMIT_AMOUNT;
+import static christmas.global.common.ChristmasConstant.GIFT_LIMIT_PRICE;
+import static christmas.global.common.ChristmasConstant.SPECIAL_DAY_DISCOUNT_AMOUNT;
+
 import christmas.domain.DayOfWeekCalculator;
 import christmas.domain.EventBenefit;
 import christmas.global.Validator;
@@ -59,7 +63,7 @@ public class ChristmasManager {
     }
 
     private void printEventBenefitPreview(Map<String, String> menuMap) {
-        if (outputView.calculateTotalOrderPrice(menuMap) < 10000) {
+        if (outputView.calculateTotalOrderPrice(menuMap) < EVENT_BENEFIT_LIMIT_AMOUNT) {
             outputView.print(ChristmasMessage.NO_EVENT);
 
             return;
@@ -81,7 +85,7 @@ public class ChristmasManager {
         int totalBenefit = dayOfWeekCalculator.christmasDDayDiscountAmount();
 
         if (dayOfWeekCalculator.isSpecialDay()) {
-            totalBenefit += 1000;
+            totalBenefit += SPECIAL_DAY_DISCOUNT_AMOUNT;
         }
         if (dayOfWeekCalculator.isWeekend()) {
             return totalBenefit + eventBenefit.weekendDiscountAmount(menuMap);
@@ -94,7 +98,7 @@ public class ChristmasManager {
         outputView.print(ChristmasMessage.BENEFIT_DETAIL);
         checkChristmasDDayAndSpecialDay();
 
-        if (outputView.calculateTotalOrderPrice(menuMap) > 120000) {
+        if (outputView.calculateTotalOrderPrice(menuMap) > GIFT_LIMIT_PRICE) {
             outputView.printGiftEventAmount();
         }
         if (dayOfWeekCalculator.isWeekend()) {

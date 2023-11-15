@@ -2,6 +2,9 @@ package christmas.global;
 
 import static christmas.global.RegularExpression.ORDER_MENU_PATTERN;
 import static christmas.global.RegularExpression.VISIT_DATE_PATTERN;
+import static christmas.global.common.ChristmasConstant.MENU_LIMIT_NUMBER;
+import static christmas.global.common.ChristmasConstant.MENU_NAME_INDEX;
+import static christmas.global.common.ChristmasConstant.MENU_QUANTITY_INDEX;
 import static christmas.global.common.ChristmasMessage.ORDER_MENU_ERROR;
 import static christmas.global.common.ChristmasMessage.ORDER_ONLY_BEVERAGE_ERROR;
 import static christmas.global.common.ChristmasMessage.OVER_QUANTITY_LIMIT_ERROR;
@@ -60,8 +63,8 @@ public class Validator {
 
     private static void orderMenuName(String menu) {
         List<String> menuAndQuantity = Arrays.asList(menu.split("-"));
-        String menuName = menuAndQuantity.get(0);
-        String menuQuantity = menuAndQuantity.get(1);
+        String menuName = menuAndQuantity.get(MENU_NAME_INDEX);
+        String menuQuantity = menuAndQuantity.get(MENU_QUANTITY_INDEX);
 
         if (isNotMenu(menuName)) {
             nameAndQuantityListClear();
@@ -118,7 +121,7 @@ public class Validator {
         for (String quantity : menuQuantities) {
             sum += Integer.parseInt(quantity);
 
-            if (sum > 20) {
+            if (sum > MENU_LIMIT_NUMBER) {
                 return true;
             }
         }

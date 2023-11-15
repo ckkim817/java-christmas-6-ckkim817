@@ -1,5 +1,10 @@
 package christmas.domain;
 
+import static christmas.global.common.ChristmasConstant.CHRISTMAS_D_DAY;
+import static christmas.global.common.ChristmasConstant.SUNDAY_NUMBER;
+import static christmas.global.common.ChristmasConstant.WEEKEND_NUMBER;
+import static christmas.global.common.ChristmasConstant.WEEK_NUMBER;
+
 public class DayOfWeekCalculator {
 
     private final int date;
@@ -9,20 +14,20 @@ public class DayOfWeekCalculator {
     }
 
     public boolean isChristmasDDay() {
-        return this.date <= 25;
+        return this.date <= CHRISTMAS_D_DAY;
     }
 
     public boolean isWeekend() {
-        return (this.date % 7) <= 2;
+        return (this.date % WEEK_NUMBER) <= WEEKEND_NUMBER;
     }
 
     public boolean isSpecialDay() {
-        return ((this.date % 7) == 3) || (this.date == 25);
+        return ((this.date % WEEK_NUMBER) == SUNDAY_NUMBER) || (this.date == CHRISTMAS_D_DAY);
     }
 
     public int christmasDDayDiscountAmount() {
         if (isChristmasDDay()) {
-            return 1000 + ((date - 1) * 100);
+            return 1_000 + ((date - 1) * 100);
         }
 
         return 0;

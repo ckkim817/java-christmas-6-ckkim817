@@ -1,5 +1,8 @@
 package christmas.ui;
 
+import static christmas.global.common.ChristmasConstant.CHAMPAGNE_GIFT_PRICE;
+import static christmas.global.common.ChristmasConstant.GIFT_LIMIT_PRICE;
+import static christmas.global.common.ChristmasConstant.SPECIAL_DAY_DISCOUNT_AMOUNT;
 import static christmas.global.common.ChristmasMessage.CHAMPAGNE_GIFT;
 import static christmas.global.common.ChristmasMessage.GIFT_MENU;
 import static christmas.global.common.ChristmasMessage.NO_GIFT;
@@ -44,8 +47,8 @@ public class OutputView {
         System.out.print(TOTAL_BENEFIT_AMOUNT.getText());
         int totalAmount = calculateTotalOrderPrice(menuMap);
 
-        if (totalAmount > 120000) {
-            price += 25000;
+        if (totalAmount > GIFT_LIMIT_PRICE) {
+            price += CHAMPAGNE_GIFT_PRICE;
         }
         if (price == 0) {
             printPrice(price);
@@ -62,12 +65,12 @@ public class OutputView {
 
     public void printSpecialDiscountAmount() {
         print(ChristmasMessage.SPECIAL_DISCOUNT);
-        printBenefitPrice(1000);
+        printBenefitPrice(SPECIAL_DAY_DISCOUNT_AMOUNT);
     }
 
     public void printGiftEventAmount() {
         print(ChristmasMessage.GIFT_EVENT);
-        printBenefitPrice(25000);
+        printBenefitPrice(CHAMPAGNE_GIFT_PRICE);
     }
 
     public void printWeekdayDiscountAmount(int amount) {
@@ -84,8 +87,8 @@ public class OutputView {
         int totalPaymentAmount = calculateTotalOrderPrice(menuMap) - price;
         print(ChristmasMessage.PAYMENT_AMOUNT_AFTER_DISCOUNT);
 
-        if (totalPaymentAmount > 120000) {
-            totalPaymentAmount -= 25000;
+        if (totalPaymentAmount > GIFT_LIMIT_PRICE) {
+            totalPaymentAmount -= CHAMPAGNE_GIFT_PRICE;
             printPrice(totalPaymentAmount);
 
             return;
@@ -119,7 +122,7 @@ public class OutputView {
     private String checkGiftMenu(Map<String, String> menuMap) {
         int totalAmount = calculateTotalOrderPrice(menuMap);
 
-        if (totalAmount > 120000) {
+        if (totalAmount > GIFT_LIMIT_PRICE) {
             return CHAMPAGNE_GIFT.getText();
         }
 

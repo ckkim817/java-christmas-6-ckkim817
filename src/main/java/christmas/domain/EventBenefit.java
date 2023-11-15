@@ -1,5 +1,6 @@
 package christmas.domain;
 
+import static christmas.global.common.ChristmasConstant.THIS_YEAR_NUMBER;
 import static christmas.global.common.MenuType.DESSERT;
 import static christmas.global.common.MenuType.MAIN;
 
@@ -16,7 +17,7 @@ public class EventBenefit {
             totalDessertMenuQuantity += calculateDessertMenuQuantity(entry);
         }
 
-        return totalDessertMenuQuantity * 2023;
+        return totalDessertMenuQuantity * THIS_YEAR_NUMBER;
     }
 
     private static int calculateDessertMenuQuantity(Entry<String, String> entry) {
