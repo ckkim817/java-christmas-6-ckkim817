@@ -55,6 +55,16 @@ public class ChristmasManager {
 
         outputView.printOrderMenuAndQuantity(menuMap);
         outputView.printOrderAmountBeforeDiscount(menuMap);
+        printEventBenefitPreview(menuMap);
+    }
+
+    private void printEventBenefitPreview(Map<String, String> menuMap) {
+        if (outputView.calculateTotalOrderPrice(menuMap) < 10000) {
+            outputView.print(ChristmasMessage.NO_EVENT);
+
+            return;
+        }
+
         outputView.printGiftMenu(menuMap);
         EventBenefit eventBenefit = new EventBenefit();
         printBenefitDetail(eventBenefit, menuMap);

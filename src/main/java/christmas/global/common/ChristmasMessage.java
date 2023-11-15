@@ -23,7 +23,13 @@ public enum ChristmasMessage {
     GIFT_EVENT("증정 이벤트: "),
     TOTAL_BENEFIT_AMOUNT("\n<총혜택 금액>\n"),
     PAYMENT_AMOUNT_AFTER_DISCOUNT("\n<할인 후 예상 결제 금액>\n"),
-    DECEMBER_EVENT_BADGE("\n<12월 이벤트 배지>\n");
+    DECEMBER_EVENT_BADGE("\n<12월 이벤트 배지>\n"),
+    NO_EVENT("\n<증정 메뉴>\n"
+            + "없음\n"
+            + "\n<혜택 내역>\n"
+            + "없음\n"
+            + "\n<총혜택 금액>\n"
+            + "0원\n");
 
     private final String text;
 
