@@ -1,10 +1,9 @@
 package christmas;
 
-import static christmas.global.common.ChristmasMessage.EVENT_BENEFIT_PREVIEW;
-
 import christmas.domain.DayOfWeekCalculator;
 import christmas.domain.EventBenefit;
 import christmas.global.Validator;
+import christmas.global.common.ChristmasMessage;
 import christmas.ui.InputView;
 import christmas.ui.OutputView;
 import java.util.Map;
@@ -47,8 +46,8 @@ public class ChristmasManager {
     }
 
     private void printEventBenefitPreview() {
-
-        System.out.print(dayOfWeekCalculator.monthAndDate() + EVENT_BENEFIT_PREVIEW.getText());
+        System.out.print(dayOfWeekCalculator.monthAndDate());
+        outputView.print(ChristmasMessage.EVENT_BENEFIT_PREVIEW);
     }
 
     private void printOrder() {
@@ -58,19 +57,43 @@ public class ChristmasManager {
         outputView.printOrderAmountBeforeDiscount(menuMap);
         outputView.printGiftMenu(menuMap);
         EventBenefit eventBenefit = new EventBenefit();
+        printBenefitDetail(eventBenefit, menuMap);
         outputView.printTotalEventBenefit(menuMap, calculateTotalBenefit(eventBenefit, menuMap));
     }
 
     private int calculateTotalBenefit(EventBenefit eventBenefit, Map<String, String> menuMap) {
-        int totalBenefit = dayOfWeekCalculator.ChristmasDDayDiscountAmount();
+        int totalBenefit = dayOfWeekCalculator.christmasDDayDiscountAmount();
 
         if (dayOfWeekCalculator.isSpecialDay()) {
             totalBenefit += 1000;
         }
         if (dayOfWeekCalculator.isWeekend()) {
-            return totalBenefit += eventBenefit.weekendDiscountAmount(menuMap);
+            return totalBenefit + eventBenefit.weekendDiscountAmount(menuMap);
         }
 
-        return totalBenefit += eventBenefit.weekdayDiscountAmount(menuMap);
+        return totalBenefit + eventBenefit.weekdayDiscountAmount(menuMap);
+    }
+
+    private void printBenefitDetail(EventBenefit eventBenefit, Map<String, String> menuMap) {
+        outputView.print(ChristmasMessage.BENEFIT_DETAIL);
+        checkChristmasDDayAndSpecialDay();
+
+        if (outputView.calculateTotalOrderPrice(menuMap) > 120000) {
+            outputView.printGiftEventAmount();
+        }
+        if (dayOfWeekCalculator.isWeekend()) {
+            outputView.printWeekendDiscountAmount(eventBenefit.weekendDiscountAmount(menuMap));
+            return;
+        }
+        outputView.printWeekdayDiscountAmount(eventBenefit.weekdayDiscountAmount(menuMap));
+    }
+
+    private void checkChristmasDDayAndSpecialDay() {
+        if (dayOfWeekCalculator.isChristmasDDay()) {
+            outputView.printChristmasDDayDiscountAmount(dayOfWeekCalculator.christmasDDayDiscountAmount());
+        }
+        if (dayOfWeekCalculator.isSpecialDay()) {
+            outputView.printSpecialDiscountAmount();
+        }
     }
 }

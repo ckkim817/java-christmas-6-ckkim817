@@ -16,6 +16,11 @@ public enum ChristmasMessage {
     CHAMPAGNE_GIFT("샴페인 1개\n"),
     NO_GIFT("없음\n"),
     BENEFIT_DETAIL("\n<혜택 내역>\n"),
+    CHRISTMAS_D_DAY_DISCOUNT("크리스마스 디데이 할인: "),
+    WEEKDAY_DISCOUNT("평일 할인: "),
+    WEEKEND_DISCOUNT("주말 할인: "),
+    SPECIAL_DISCOUNT("특별 할인: "),
+    GIFT_EVENT("증정 이벤트: "),
     TOTAL_BENEFIT_AMOUNT("\n<총혜택 금액>\n"),
     PAYMENT_AMOUNT_AFTER_DISCOUNT("\n<할인 후 예상 결제 금액>\n"),
     DECEMBER_EVENT_BADGE("\n<12월 이벤트 배지>\n");

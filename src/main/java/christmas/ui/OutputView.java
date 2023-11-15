@@ -55,6 +55,41 @@ public class OutputView {
         printBenefitPrice(price);
     }
 
+    public void printChristmasDDayDiscountAmount(int amount) {
+        print(ChristmasMessage.CHRISTMAS_D_DAY_DISCOUNT);
+        printBenefitPrice(amount);
+    }
+
+    public void printSpecialDiscountAmount() {
+        print(ChristmasMessage.SPECIAL_DISCOUNT);
+        printBenefitPrice(1000);
+    }
+
+    public void printGiftEventAmount() {
+        print(ChristmasMessage.GIFT_EVENT);
+        printBenefitPrice(25000);
+    }
+
+    public void printWeekdayDiscountAmount(int amount) {
+        print(ChristmasMessage.WEEKDAY_DISCOUNT);
+        printBenefitPrice(amount);
+    }
+
+    public void printWeekendDiscountAmount(int amount) {
+        print(ChristmasMessage.WEEKDAY_DISCOUNT);
+        printBenefitPrice(amount);
+    }
+
+    public int calculateTotalOrderPrice(Map<String, String> menuMap) {
+        int totalAmount = 0;
+
+        for (Entry<String, String> entry : menuMap.entrySet()) {
+            totalAmount += calculateMenuPrice(entry);
+        }
+
+        return totalAmount;
+    }
+
     private void printPrice(int price) {
         NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.KOREA);
         String formattedPrice = numberFormat.format(price) + "원\n";
@@ -75,16 +110,6 @@ public class OutputView {
         }
 
         return NO_GIFT.getText();
-    }
-
-    private int calculateTotalOrderPrice(Map<String, String> menuMap) {
-        int totalAmount = 0;
-
-        for (Entry<String, String> entry : menuMap.entrySet()) {
-            totalAmount += calculateMenuPrice(entry);
-        }
-
-        return totalAmount;
     }
 
     private int calculateMenuPrice(Entry<String, String> entry) {

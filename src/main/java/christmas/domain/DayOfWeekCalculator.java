@@ -20,7 +20,7 @@ public class DayOfWeekCalculator {
         return ((this.date % 7) == 3) || (this.date == 25);
     }
 
-    public int ChristmasDDayDiscountAmount() {
+    public int christmasDDayDiscountAmount() {
         if (isChristmasDDay()) {
             return 1000 + ((date - 1) * 100);
         }
