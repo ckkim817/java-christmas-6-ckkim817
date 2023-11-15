@@ -1,6 +1,5 @@
 package christmas;
 
-import christmas.domain.ChristmasManager;
 import christmas.ui.InputView;
 import christmas.ui.OutputView;
 

@@ -1,5 +1,9 @@
-package christmas.domain;
+package christmas;
 
+import static christmas.global.common.ChristmasMessage.EVENT_BENEFIT_PREVIEW;
+
+import christmas.domain.DayOfWeekCalculator;
+import christmas.global.Validator;
 import christmas.ui.InputView;
 import christmas.ui.OutputView;
 
@@ -26,6 +30,8 @@ public class ChristmasManager {
             System.out.println("특별 할인");
         }
         inputOrderMenu();
+        printEventBenefitPreview();
+        printOrder();
     }
 
     private void inputVisitDate() {
@@ -45,5 +51,14 @@ public class ChristmasManager {
             System.out.print("[ERROR] " + e.getMessage());
             inputOrderMenu();
         }
+    }
+
+    private void printEventBenefitPreview() {
+
+        System.out.print(dayOfWeekCalculator.monthAndDate() + EVENT_BENEFIT_PREVIEW.getText());
+    }
+
+    private void printOrder() {
+        outputView.printOrderMenuAndQuantity(Validator.menuMapping());
     }
 }

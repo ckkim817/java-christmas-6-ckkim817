@@ -27,4 +27,8 @@ public class DayOfWeekCalculator {
 
         return 0;
     }
+
+    public String monthAndDate() {
+        return "12월 " + this.date;
+    }
 }
