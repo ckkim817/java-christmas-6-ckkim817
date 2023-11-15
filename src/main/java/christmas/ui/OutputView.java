@@ -80,6 +80,20 @@ public class OutputView {
         printBenefitPrice(amount);
     }
 
+    public void printPaymentAmountAfterDiscount(Map<String, String> menuMap, int price) {
+        int totalPaymentAmount = calculateTotalOrderPrice(menuMap) - price;
+        print(ChristmasMessage.PAYMENT_AMOUNT_AFTER_DISCOUNT);
+
+        if (totalPaymentAmount > 120000) {
+            totalPaymentAmount -= 25000;
+            printPrice(totalPaymentAmount);
+
+            return;
+        }
+
+        printPrice(totalPaymentAmount);
+    }
+
     public int calculateTotalOrderPrice(Map<String, String> menuMap) {
         int totalAmount = 0;
 

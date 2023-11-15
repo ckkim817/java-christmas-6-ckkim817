@@ -23,6 +23,7 @@ public class Validator {
 
     public static void visitDate(String input) {
         if (!input.matches(VISIT_DATE_PATTERN)) {
+            nameAndQuantityListClear();
             throw new IllegalArgumentException(VISIT_DATE_ERROR.getText());
         }
     }
@@ -52,6 +53,7 @@ public class Validator {
 
     private static void orderMenuFormat(String menu) {
         if (!menu.matches(ORDER_MENU_PATTERN)) {
+            nameAndQuantityListClear();
             throw new IllegalArgumentException(ORDER_MENU_ERROR.getText());
         }
     }
@@ -62,6 +64,7 @@ public class Validator {
         String menuQuantity = menuAndQuantity.get(1);
 
         if (isNotMenu(menuName)) {
+            nameAndQuantityListClear();
             throw new IllegalArgumentException(ORDER_MENU_ERROR.getText());
         }
 

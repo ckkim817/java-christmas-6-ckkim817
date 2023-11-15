@@ -69,6 +69,12 @@ public class ChristmasManager {
         EventBenefit eventBenefit = new EventBenefit();
         printBenefitDetail(eventBenefit, menuMap);
         outputView.printTotalEventBenefit(menuMap, calculateTotalBenefit(eventBenefit, menuMap));
+        printPaymentAmountAfterDiscount(menuMap, eventBenefit);
+        printEventBadge(eventBenefit, menuMap);
+    }
+
+    private void printPaymentAmountAfterDiscount(Map<String, String> menuMap, EventBenefit eventBenefit) {
+        outputView.printPaymentAmountAfterDiscount(menuMap, calculateTotalBenefit(eventBenefit, menuMap));
     }
 
     private int calculateTotalBenefit(EventBenefit eventBenefit, Map<String, String> menuMap) {
