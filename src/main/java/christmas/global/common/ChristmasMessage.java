@@ -13,6 +13,8 @@ public enum ChristmasMessage {
     ORDER_MENU_AND_QUANTITY("\n<주문 메뉴>\n"),
     ORDER_AMOUNT_BEFORE_DISCOUNT("\n<할인 전 총주문 금액>\n"),
     GIFT_MENU("\n<증정 메뉴>\n"),
+    CHAMPAGNE_GIFT("샴페인 1개\n"),
+    NO_GIFT("없음"),
     BENEFIT_DETAIL("\n<혜택 내역>\n"),
     TOTAL_BENEFIT_AMOUNT("\n<총혜택 금액>\n"),
     PAYMENT_AMOUNT_AFTER_DISCOUNT("\n<할인 후 예상 결제 금액>\n"),

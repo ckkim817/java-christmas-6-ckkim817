@@ -61,5 +61,6 @@ public class ChristmasManager {
     private void printOrder() {
         outputView.printOrderMenuAndQuantity(Validator.menuMapping());
         outputView.printOrderAmountBeforeDiscount(Validator.menuMapping());
+        outputView.printGiftMenu(Validator.menuMapping());
     }
 }

@@ -1,5 +1,8 @@
 package christmas.ui;
 
+import static christmas.global.common.ChristmasMessage.CHAMPAGNE_GIFT;
+import static christmas.global.common.ChristmasMessage.GIFT_MENU;
+import static christmas.global.common.ChristmasMessage.NO_GIFT;
 import static christmas.global.common.ChristmasMessage.ORDER_AMOUNT_BEFORE_DISCOUNT;
 import static christmas.global.common.ChristmasMessage.ORDER_MENU_AND_QUANTITY;
 
@@ -25,18 +28,38 @@ public class OutputView {
     }
 
     public void printOrderAmountBeforeDiscount(Map<String, String> menuMap) {
-        int totalAmount = 0;
-
-        System.out.print(ORDER_AMOUNT_BEFORE_DISCOUNT.getText());
-
-        for (Map.Entry<String, String> entry : menuMap.entrySet()) {
-            totalAmount += calculateMenuPrice(entry);
-        }
+        int totalAmount = calculateTotalOrderPrice(menuMap);
 
         printPrice(totalAmount);
     }
 
-    private static int calculateMenuPrice(Entry<String, String> entry) {
+    public void printGiftMenu(Map<String, String> menuMap) {
+        System.out.print(GIFT_MENU.getText());
+        System.out.print(checkGiftMenu(menuMap));
+    }
+
+    private String checkGiftMenu(Map<String, String> menuMap) {
+        int totalAmount = calculateTotalOrderPrice(menuMap);
+
+        if (totalAmount > 120000) {
+            return CHAMPAGNE_GIFT.getText();
+        }
+
+        return NO_GIFT.getText();
+    }
+
+    private int calculateTotalOrderPrice(Map<String, String> menuMap) {
+        int totalAmount = 0;
+
+        System.out.print(ORDER_AMOUNT_BEFORE_DISCOUNT.getText());
+
+        for (Entry<String, String> entry : menuMap.entrySet()) {
+            totalAmount += calculateMenuPrice(entry);
+        }
+        return totalAmount;
+    }
+
+    private int calculateMenuPrice(Entry<String, String> entry) {
         int price = 0;
 
         for (Menu menu : Menu.values()) {
@@ -48,7 +71,7 @@ public class OutputView {
         return price;
     }
 
-    public void printPrice(int price) {
+    private void printPrice(int price) {
         NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.KOREA);
         String formattedPrice = numberFormat.format(price) + "원";
         System.out.println(formattedPrice);
