@@ -112,4 +112,21 @@ public class ChristmasManager {
             outputView.printSpecialDiscountAmount();
         }
     }
+
+    private void printEventBadge(EventBenefit eventBenefit, Map<String, String> menuMap) {
+        outputView.print(ChristmasMessage.DECEMBER_EVENT_BADGE);
+        if (calculateTotalBenefit(eventBenefit, menuMap) >= 20000) {
+            System.out.print("별\n");
+            return;
+        }
+        if (calculateTotalBenefit(eventBenefit, menuMap) >= 10000) {
+            System.out.print("트리\n");
+            return;
+        }
+        if (calculateTotalBenefit(eventBenefit, menuMap) >= 5000) {
+            System.out.print("산타\n");
+            return;
+        }
+        System.out.println("없음\n");
+    }
 }
